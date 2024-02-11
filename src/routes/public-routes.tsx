@@ -9,11 +9,11 @@ export const publicRoutes: RouteObject[] = [
     element: <AuthLayout />,
     children: [
       {
-        path: "singin",
+        path: "signin",
         element: <Login />,
       },
       {
-        path: "singup",
+        path: "signup",
         element: <Register />,
       },
     ],
