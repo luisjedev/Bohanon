@@ -14,6 +14,10 @@ export const protectedRoutes: RouteObject[] = [
         path: "favorites",
         element: <h1>Favoritos</h1>,
       },
+      {
+        path: "profile",
+        element: <h1>Perfil</h1>,
+      },
     ],
   },
 ];
