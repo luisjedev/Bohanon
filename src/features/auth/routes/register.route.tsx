@@ -1,5 +1,6 @@
 import { FormEvent, useState } from "react";
 import { signUpNewUser } from "../services/auth-service";
+import { Navigate } from "react-router-dom";
 
 export function Register() {
   const [email, setEmail] = useState("");
@@ -9,8 +10,9 @@ export function Register() {
     e.preventDefault();
 
     if (email && password) {
-      const signup = signUpNewUser(email, password);
+      const signup = signUpNewUser({ email: email, password: password });
       console.log(signup);
+      return <Navigate to={"/auth/signin"} />;
     }
   }
 
