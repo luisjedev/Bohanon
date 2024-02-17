@@ -33,6 +33,7 @@ export async function signInWithEmail({
     });
 
     if (error) {
+      console.log(error.message);
       throw new Error("Error en la llamada");
     }
     return data;

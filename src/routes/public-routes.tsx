@@ -5,7 +5,7 @@ import { AuthLayout } from "../features/auth/layouts/auth.layout";
 
 export const publicRoutes: RouteObject[] = [
   {
-    path: "auth",
+    path: "/auth",
     element: <AuthLayout />,
     children: [
       {

@@ -3,11 +3,11 @@ import { HomeLayout } from "../features/misc/layouts/home.layout";
 
 export const protectedRoutes: RouteObject[] = [
   {
-    path: "",
+    path: "/",
     element: <HomeLayout />,
     children: [
       {
-        path: "",
+        path: "/",
         element: <h1 className="bg-blue-500">Pantalla principal</h1>,
       },
       {

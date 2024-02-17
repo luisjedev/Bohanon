@@ -1,12 +1,15 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { Session } from "@supabase/supabase-js";
 import { supabase } from "../lib/supabase";
+import { signInWithEmail } from "../features/auth/services/auth-service";
 
 interface ContextProps {
   session: Session | null;
 }
 
-const SessionContext = createContext<ContextProps>({ session: null });
+const SessionContext = createContext<ContextProps>({
+  session: null,
+});
 
 export function SessionContextProvider({
   children,
@@ -25,10 +28,9 @@ export function SessionContextProvider({
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
-
+    console.log(session);
     return () => subscription.unsubscribe();
   }, []);
-
   return (
     <SessionContext.Provider value={{ session }}>
       {children}
