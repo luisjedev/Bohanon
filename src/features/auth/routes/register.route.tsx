@@ -1,20 +1,17 @@
 import { FormEvent, useState } from "react";
-import { signUpNewUser } from "../services/auth-service";
-import { Navigate } from "react-router-dom";
+import { useSessionContext } from "../../../contexts/session-context";
 
 export function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const { signup } = useSessionContext();
+
   async function onHandleSubmit(e: FormEvent) {
     e.preventDefault();
 
     if (email && password) {
-      const signup = await signUpNewUser({ email: email, password: password });
-
-      if (signup) {
-        return <Navigate to={"auth/signin"} />;
-      }
+      await signup(email, password);
     }
   }
 

@@ -1,15 +1,17 @@
 import { FormEvent, useState } from "react";
-import { signInWithEmail } from "../services/auth-service";
+import { useSessionContext } from "../../../contexts/session-context";
 
 export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const { signin } = useSessionContext();
+
   async function onHandleSubmit(e: FormEvent) {
     e.preventDefault();
 
     if (email && password) {
-      await signInWithEmail(email, password);
+      await signin(email, password);
     }
   }
 

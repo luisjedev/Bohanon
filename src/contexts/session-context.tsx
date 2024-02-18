@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { Session, User, WeakPassword } from "@supabase/supabase-js";
 import { supabase } from "../lib/supabase";
 import { signInWithEmail } from "../features/auth/services/auth-service";
+import { signUpNewUser } from "../features/auth/services/auth-service";
 
 interface ContextProps {
   session: Session | null;
@@ -17,12 +18,20 @@ interface ContextProps {
       }
     | undefined
   >;
+  signup: (
+    email: string,
+    password: string
+  ) => Promise<{
+    user: User | null;
+    session: Session | null;
+  }>;
 }
 
 const SessionContext = createContext<ContextProps>({
   session: null,
   isLoading: true,
   signin: signInWithEmail,
+  signup: signUpNewUser,
 });
 
 export function SessionContextProvider({
@@ -50,7 +59,12 @@ export function SessionContextProvider({
   }, []);
   return (
     <SessionContext.Provider
-      value={{ session, isLoading, signin: signInWithEmail }}
+      value={{
+        session,
+        isLoading,
+        signin: signInWithEmail,
+        signup: signUpNewUser,
+      }}
     >
       {children}
     </SessionContext.Provider>
