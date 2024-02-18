@@ -5,7 +5,11 @@ import { useSessionContext } from "../../../contexts/session-context";
 import { Navigate } from "react-router-dom";
 
 export function HomeLayout() {
-  const { session } = useSessionContext();
+  const { session, isLoading } = useSessionContext();
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
 
   if (!session) {
     return <Navigate to={"/auth/signin"} />;

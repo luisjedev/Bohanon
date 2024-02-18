@@ -9,7 +9,7 @@ export function Login() {
     e.preventDefault();
 
     if (email && password) {
-      await signInWithEmail({ email: email, password: password });
+      await signInWithEmail(email, password);
     }
   }
 

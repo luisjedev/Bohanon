@@ -4,7 +4,11 @@ import { LoadingScreen } from "../../misc/components/loading-screen";
 import { useSessionContext } from "../../../contexts/session-context";
 
 export function AuthLayout() {
-  const { session } = useSessionContext();
+  const { session, isLoading } = useSessionContext();
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
 
   if (session) {
     return <Navigate to={"/"} />;
