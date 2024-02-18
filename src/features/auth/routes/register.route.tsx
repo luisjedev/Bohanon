@@ -6,13 +6,15 @@ export function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function onHandleSubmit(e: FormEvent) {
+  async function onHandleSubmit(e: FormEvent) {
     e.preventDefault();
 
     if (email && password) {
-      const signup = signUpNewUser({ email: email, password: password });
-      console.log(signup);
-      return <Navigate to={"/auth/signin"} />;
+      const signup = await signUpNewUser({ email: email, password: password });
+
+      if (signup) {
+        return <Navigate to={"auth/signin"} />;
+      }
     }
   }
 

@@ -1,18 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { LoadingScreen } from "../components/loading-screen";
 import { Outlet } from "react-router-dom";
 import { useSessionContext } from "../../../contexts/session-context";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export function HomeLayout() {
   const { session } = useSessionContext();
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!session) {
-      navigate("/auth/signin");
-    }
-  }, [session]);
+  if (!session) {
+    return <Navigate to={"/auth/signin"} />;
+  }
 
   return (
     <React.Suspense fallback={<LoadingScreen />}>
